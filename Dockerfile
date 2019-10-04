@@ -7,4 +7,8 @@ COPY . .
 
 RUN go build -o /go/bin/krypto -v .
 
-ENTRYPOINT [ "/go/bin/krypto" ]
+FROM alpine
+
+COPY --from=krypto /go/bin /pkg/bin
+
+ENTRYPOINT [ "/pkg/bin/krypto" ]
