@@ -25,3 +25,8 @@ GLOBAL OPTIONS:
    --version, -v  print the version
 ```
 
+## Use with Docker
+
+```
+docker run --rm -it highercomve/krypto
+```
