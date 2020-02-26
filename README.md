@@ -1,16 +1,16 @@
-AES CBC crypto tool
+AES CBC cryptography tool
 ===================
 
 ```
-go get github.com/highercomve/kripto
+go get github.com/pantacor/krypto
 ```
 
 ```
 NAME:
-   kripto - AES cbc crypto tool
+   krypto - AES cbc cryptography tool
 
 USAGE:
-   kripto [global options] command [command options] [arguments...]
+   krypto [global options] command [command options] [arguments...]
 
 VERSION:
    0.0.1
@@ -24,4 +24,3 @@ GLOBAL OPTIONS:
    --help, -h     show help
    --version, -v  print the version
 ```
-

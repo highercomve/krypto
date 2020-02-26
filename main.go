@@ -9,9 +9,9 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "kripto"
-	app.HelpName = "kripto"
-	app.Usage = "AES cbc crypto tool"
+	app.Name = "krypto"
+	app.HelpName = "krypto"
+	app.Usage = "AES cbc cryptography tool"
 	app.Version = Version
 
 	app.Commands = []cli.Command{
