@@ -2,9 +2,10 @@ package main
 
 import (
 	"io/ioutil"
+	"log"
 	"os"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func main() {
@@ -15,21 +16,46 @@ func main() {
 	app.Description = "AES key, either 16, 24, or 32 bytes to select AES-128, AES-192, or AES-256."
 	app.Version = Version
 
-	app.Commands = []cli.Command{
+	app.Commands = []*cli.Command{
 		decrypt(),
 		encrypt(),
 	}
 
-	app.Run(os.Args)
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-func encrypt() cli.Command {
-	return cli.Command{
+func encrypt() *cli.Command {
+	return &cli.Command{
 		Name:        "encrypt",
 		Aliases:     []string{"e"},
 		ArgsUsage:   "",
 		Usage:       "encrypt file",
 		Description: "",
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:     "in, i",
+				Usage:    "Input file",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "out, o",
+				Usage:    "Output file",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "key, k",
+				Usage:    "Key string",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "iv",
+				Usage:    "Initial vector string",
+				Required: true,
+			},
+		},
 		Action: func(c *cli.Context) error {
 			inFile := c.String("in")
 			outFile := c.String("out")
@@ -56,38 +82,38 @@ func encrypt() cli.Command {
 
 			return nil
 		},
-		Flags: []cli.Flag{
-			cli.StringFlag{
-				Name:     "in, i",
-				Usage:    "Input file",
-				Required: true,
-			},
-			cli.StringFlag{
-				Name:     "out, o",
-				Usage:    "Output file",
-				Required: true,
-			},
-			cli.StringFlag{
-				Name:     "key, k",
-				Usage:    "Key string",
-				Required: true,
-			},
-			cli.StringFlag{
-				Name:     "iv",
-				Usage:    "Initial vector string",
-				Required: true,
-			},
-		},
 	}
 }
 
-func decrypt() cli.Command {
-	return cli.Command{
+func decrypt() *cli.Command {
+	return &cli.Command{
 		Name:        "decrypt",
 		Aliases:     []string{"d"},
 		ArgsUsage:   "",
 		Usage:       "decrypt file",
 		Description: "",
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:     "in, i",
+				Usage:    "Input file",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "out, o",
+				Usage:    "Output file",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "key, k",
+				Usage:    "Key string",
+				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     "iv",
+				Usage:    "Initial vector string",
+				Required: true,
+			},
+		},
 		Action: func(c *cli.Context) error {
 			inFile := c.String("in")
 			outFile := c.String("out")
@@ -113,28 +139,6 @@ func decrypt() cli.Command {
 			ioutil.WriteFile(outFile, output, 0644)
 
 			return nil
-		},
-		Flags: []cli.Flag{
-			cli.StringFlag{
-				Name:     "in, i",
-				Usage:    "Input file",
-				Required: true,
-			},
-			cli.StringFlag{
-				Name:     "out, o",
-				Usage:    "Output file",
-				Required: true,
-			},
-			cli.StringFlag{
-				Name:     "key, k",
-				Usage:    "Key string",
-				Required: true,
-			},
-			cli.StringFlag{
-				Name:     "iv",
-				Usage:    "Initial vector string",
-				Required: true,
-			},
 		},
 	}
 }
