@@ -12,6 +12,7 @@ func main() {
 	app.Name = "krypto"
 	app.HelpName = "krypto"
 	app.Usage = "AES cbc cryptography tool"
+	app.Description = "AES key, either 16, 24, or 32 bytes to select AES-128, AES-192, or AES-256."
 	app.Version = Version
 
 	app.Commands = []cli.Command{
@@ -25,7 +26,7 @@ func main() {
 func encrypt() cli.Command {
 	return cli.Command{
 		Name:        "encrypt",
-		Aliases:     []string{"d"},
+		Aliases:     []string{"e"},
 		ArgsUsage:   "",
 		Usage:       "encrypt file",
 		Description: "",

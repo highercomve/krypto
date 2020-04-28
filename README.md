@@ -9,6 +9,9 @@ go get github.com/pantacor/krypto
 NAME:
    krypto - AES cbc cryptography tool
 
+DESCRIPTION:
+   AES key, either 16, 24, or 32 bytes to select AES-128, AES-192, or AES-256.
+
 USAGE:
    krypto [global options] command [command options] [arguments...]
 
