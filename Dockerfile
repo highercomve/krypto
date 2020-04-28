@@ -5,7 +5,7 @@ ENV GO111MODULES=on
 
 COPY . .
 
-RUN go build -o /go/bin/krypto -v .
+RUN GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o /go/bin/krypto -v .
 
 FROM alpine
 
