@@ -11,4 +11,7 @@ FROM alpine
 
 COPY --from=krypto /go/bin /pkg/bin
 
+ENV PATH="/pkg/bin:${PATH}"
+WORKDIR /content
+
 ENTRYPOINT [ "/pkg/bin/krypto" ]
